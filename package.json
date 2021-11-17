@@ -1,0 +1,47 @@
+{
+  "name": "nodejs-typescript-starter",
+  "version": "0.1.0",
+  "description": "Typescript starter pack for typescript/node.js development.",
+  "main": "index.js",
+  "repository": "https://github.com/qest-cz/nodejs-typescript-starter.git",
+  "author": "Radim Štěpaník <radim.stepanik@gmail.com>",
+  "contributors": [
+    "Jindřich Máca <jindrich.maca@qest.cz>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "build:check": "tsc --noemit",
+    "dev": "cross-env NODE_ENV=dev ts-node-dev --transpile-only --no-notify -r dotenv/config src/index.ts dotenv_config_path=./config/.env | pino-pretty",
+    "eslint:fix": "eslint . --fix --ext .ts",
+    "eslint:check": "eslint . --quiet --ext  .ts",
+    "test": "DOTENV_CONFIG_PATH=./config/.env.test jest",
+    "test:watch": "yarn test --watch",
+    "test:update": "yarn test --updateSnapshot",
+    "test:cover": "yarn test --coverage",
+    "start": "node -r dotenv/config dist/src/index.js dotenv_config_path=./config/.env",
+    "clean": "concurrently 'rm -rf dist' 'rm -rf coverage'"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/lodash": "^4.14.176",
+    "@types/node": "^16.11.6",
+    "concurrently": "^6.3.0",
+    "cross-env": "^7.0.3",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.3.1",
+    "pino-pretty": "^7.1.0",
+    "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.4"
+  }
+}
