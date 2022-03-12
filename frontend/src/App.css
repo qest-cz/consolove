@@ -1,0 +1,34 @@
+.app {
+}
+
+.filter {
+    display: flex;
+    background-color: #E8E8E8;
+    padding: 1em;
+}
+
+.filter div {
+    margin-right: 2em;
+}
+
+.log {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #E8E8E8;
+    padding: 0.5em 1em;
+}
+
+.log-row {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.log-body {
+    padding: 0.5em;
+    background-color: whitesmoke;
+}
+
+.log-body-plain {
+    font-size: 12px;
+}
