@@ -7,7 +7,7 @@ const Log = ({log: {type, duration, id, level, project, stack, body, timestamp}}
   const formatBody = (bodyPart: string, index: number) => {
     try {
       const parsedBody = JSON.parse(bodyPart)
-      return <ReactJson key={index} src={parsedBody} collapsed />
+      return <ReactJson key={index} src={parsedBody} collapsed={4} />
     } catch (e) {
      return <span className="log-body-plain" key={index}>{bodyPart}</span>
     }
