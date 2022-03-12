@@ -11,16 +11,19 @@ type LogsProps = {
 const Logs = ({ filters }: LogsProps) => {
   const searchTypes = Object.values(LogType).filter(t => !filters.types.includes(t))
   const searchLevels = Object.values(LogLevel).filter(l => !filters.levels.includes(l))
-  console.log(filters.types);
-  console.log('searchTypes: ', searchTypes);
-  console.log('searchLevels: ', searchLevels);
 
   const logs = useLiveQuery(
-    () => db.logs
-      // .where('[type+level]').anyOf([searchTypes, searchLevels])
-      .where('type').anyOf(searchTypes)
-      .toArray()
-  );
+    () => {
+      let logsCollection = db.logs.where('type').anyOf(searchTypes)
+      if (filters.levels) {
+        logsCollection = logsCollection.and(val => searchLevels.includes(val.level))
+      }
+      if (filters.fulltext) {
+        logsCollection = logsCollection.and(val => val.body.some(b => b.includes(filters.fulltext ?? '')))
+      }
+      return logsCollection.toArray()
+    }
+  , [filters]);
 
   return (
     <div>

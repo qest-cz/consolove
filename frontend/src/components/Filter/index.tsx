@@ -28,27 +28,32 @@ const Filter = ({filters, setFilters}: FilterProps) => {
     db.logs.clear()
   }
 
+  const handleFulltextChange = (ev: ChangeEvent<HTMLInputElement>) => {
+    setFilters({...filters, fulltext: ev.target.value})
+  }
+
   const handleTypesChange = (ev: ChangeEvent<HTMLInputElement>) => {
     const type = ev.target.id as LogType
     if (filters.types.includes(type)) {
-      setFilters({ ...filters, types: filters.types.filter(f => f !== type) })
+      setFilters({...filters, types: filters.types.filter(f => f !== type)})
     } else {
-      setFilters({ ...filters, types: [...filters.types, type] })
+      setFilters({...filters, types: [...filters.types, type]})
     }
   }
 
   const handleLevelsChange = (ev: ChangeEvent<HTMLInputElement>) => {
     const level = ev.target.id as LogLevel
     if (filters.levels.includes(level)) {
-      setFilters({ ...filters, levels: filters.levels.filter(l => l !== level) })
+      setFilters({...filters, levels: filters.levels.filter(l => l !== level)})
     } else {
-      setFilters({ ...filters, levels: [...filters.levels, level] })
+      setFilters({...filters, levels: [...filters.levels, level]})
     }
   }
 
   return (
     <div className="filter">
-      <div>Search: <input type="text" name="fulltext" placeholder="Enter fulltext search query"/></div>
+      <div>Search: <input type="text" name="fulltext" placeholder="Enter fulltext search query"
+                          value={filters.fulltext ?? ''} onChange={handleFulltextChange}/></div>
       <div>Types: {Object.values(LogType)
         .map(type => <span key={type}><input id={type} type="checkbox" checked={!filters.types.includes(type)}
                                              onChange={handleTypesChange}/><label

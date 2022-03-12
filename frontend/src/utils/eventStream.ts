@@ -1,7 +1,6 @@
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 
 const registerStreamListener = () => {
-  console.log('--------> register stream listener');
   const fetchData = async () => {
     await fetchEventSource(`http://localhost:1234`, {
       method: "GET",
