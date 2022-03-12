@@ -2,6 +2,9 @@
 For those who love console log. Main purpose of this package is better visualisation of console logs.
 
 *👷 Important notice: It is under heavy development. In this phase of product you need to clone this github project to run consolove client.*
+## Restrictions:
+- only with typescript
+- only for nodejs project
 ## Main features:
 - visualization of console log
 - UI for JSON
@@ -13,6 +16,11 @@ For those who love console log. Main purpose of this package is better visualisa
 - graphs
 - compare
 - predefined filters
+- support of frontend development
+
+## Usage
+- add import of consolove into root of the project just  `import 'consolove'`
+- start in `frontend` folder `npm run start`
 
 
 If you need typescript starter pack for node.js development. You are on
