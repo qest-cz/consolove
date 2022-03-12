@@ -1,4 +1,19 @@
-# Nodejs typescript starter
+# ❤️ Consolove ❤️
+For those who love console log. Main purpose of this package is better visualisation of console logs.
+
+*👷 Important notice: It is under heavy development. In this phase of product you need to clone this github project to run consolove client.*
+## Main features:
+- visualization of console log
+- UI for JSON
+- automatic tracking of all requests
+
+## Future
+- plugin system - for db, queues or custom things
+- easy start, developer experience - current state is not use friendly - we need to
+- graphs
+- compare
+- predefined filters
+
 
 If you need typescript starter pack for node.js development. You are on
 right place. Repository contains only must have (for our point of view)
