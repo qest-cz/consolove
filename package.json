@@ -1,6 +1,6 @@
 {
   "name": "consolove",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Logging with ❤️",
   "main": "index.js",
   "author": "Radim Štěpaník <radim.stepanik@gmail.com>",
