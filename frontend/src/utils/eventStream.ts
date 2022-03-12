@@ -1,4 +1,5 @@
 import { fetchEventSource } from "@microsoft/fetch-event-source";
+import db from "./db";
 
 const registerStreamListener = () => {
   const fetchData = async () => {
@@ -21,8 +22,8 @@ const registerStreamListener = () => {
         }
       },
       onmessage(event) {
-        console.log('onMessage!');
         const parsedData = JSON.parse(event.data);
+        db.logs.add(parsedData);
 
         // setData((data) => [...data, parsedData]);
         console.log('data recieved: ', parsedData);
