@@ -16,17 +16,14 @@ const Log = ({log: {type, duration, id, level, project, stack, body, timestamp}}
   return (
     <div className="log">
       <div className="log-row">
-        <div>id: {id}</div>
-        <div>Project: {project}</div>
-        <div>Type: {type}</div>
-        <div>Level: {level}</div>
+        <div className="date">{timestamp.toLocaleString()}:</div>
 
-        <div>Timestamp: {timestamp.toLocaleString()}</div>
-        <div>Duration: {duration}ms</div>
+        {/*<div>Project: {project}</div>*/}
+        <div className="item">Type: {type}</div>
+        <div className="item">Level: {level}</div>
+        <div className="item">Duration: {duration}ms {duration > 100 ? <span className="warning">🐢</span>:''}</div>
       </div>
 
-
-      <div>Stack: {stack}</div>
       <div className="log-body">
         {body.map(formatBody)}
       </div>

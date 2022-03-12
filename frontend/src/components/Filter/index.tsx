@@ -5,13 +5,15 @@ import db from "../../utils/db";
 type FilterProps = {
   filters: FiltersType
   setFilters: (filters: FiltersType) => void
+  autoscroll: boolean
+  setAutoscroll: (scroll: boolean) => void
 }
 
-const Filter = ({filters, setFilters}: FilterProps) => {
+const Filter = ({filters, setFilters, autoscroll, setAutoscroll}: FilterProps) => {
   const handleSaveData = async () => {
     const data: LogEntry = {
       body: ['{"key": "val"}', 'plain string', '{"A": "B"}'],
-      duration: 0,
+      duration: 120,
       level: LogLevel.INFO,
       project: "my-project",
       stack: "",
@@ -50,9 +52,13 @@ const Filter = ({filters, setFilters}: FilterProps) => {
     }
   }
 
+  const handleAutoscrollChange = () => {
+    setAutoscroll(!autoscroll)
+  }
+
   return (
     <div className="filter">
-      <div>Search: <input type="text" name="fulltext" placeholder="Enter fulltext search query"
+      <div>Search: <input type="text" name="fulltext" className="fulltext" placeholder="Enter fulltext search query"
                           value={filters.fulltext ?? ''} onChange={handleFulltextChange}/></div>
       <div>Types: {Object.values(LogType)
         .map(type => <span key={type}><input id={type} type="checkbox" checked={!filters.types.includes(type)}
@@ -63,7 +69,9 @@ const Filter = ({filters, setFilters}: FilterProps) => {
                                                onChange={handleLevelsChange}/><label
           htmlFor={level}>{level}</label></span>)}</div>
       <div>Projects: @todo</div>
-      <div>Auto-scroll: @todo</div>
+      <div><span><input id="auto-scroll" type="checkbox" checked={autoscroll}
+                        onChange={handleAutoscrollChange}/><label
+        htmlFor="auto-scroll">Auto-scroll</label></span></div>
       <div>
         <button onClick={handleSaveData}>Save data</button>
         <button onClick={handleClear}>Clear</button>

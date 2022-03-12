@@ -6,6 +6,7 @@ import Logs from "./components/Logs";
 import registerStreamListener from './utils/eventStream';
 
 function App() {
+  const [autoscroll, setAutoscroll] = React.useState(true)
   const [filters, setFilters] = React.useState<FiltersType>({
     types: [],
     levels: [],
@@ -18,8 +19,8 @@ function App() {
 
   return (
     <div className="app">
-      <Filter filters={filters} setFilters={setFilters}/>
-      <Logs filters={filters}/>
+      <Filter filters={filters} setFilters={setFilters} autoscroll={autoscroll} setAutoscroll={setAutoscroll} />
+      <Logs filters={filters} autoscroll={autoscroll}/>
     </div>
   );
 }

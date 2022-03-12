@@ -6,9 +6,11 @@ import {FiltersType, LogLevel, LogType} from "../../@types";
 
 type LogsProps = {
   filters: FiltersType
+  autoscroll: boolean
 }
 
-const Logs = ({ filters }: LogsProps) => {
+const Logs = ({ filters, autoscroll }: LogsProps) => {
+  const messagesEndRef = React.useRef<HTMLDivElement>(null)
   const searchTypes = Object.values(LogType).filter(t => !filters.types.includes(t))
   const searchLevels = Object.values(LogLevel).filter(l => !filters.levels.includes(l))
 
@@ -25,9 +27,16 @@ const Logs = ({ filters }: LogsProps) => {
     }
   , [filters]);
 
+  React.useEffect(() => {
+    if (autoscroll) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [logs, autoscroll])
+
   return (
     <div>
       {logs?.map(log => <Log key={log.id} log={log} />)}
+      <div ref={messagesEndRef} />
     </div>
   );
 };
