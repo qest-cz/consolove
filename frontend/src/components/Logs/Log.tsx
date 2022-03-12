@@ -13,8 +13,9 @@ const Log = ({log: {type, duration, id, level, project, stack, body, timestamp}}
     }
   }
 
+  const isLongAgo = ((new Date().getTime() - timestamp.getTime()) / 1000) > 5 // 5s
   return (
-    <div className="log">
+    <div className={`log ${isLongAgo && 'long-ago'}`}>
       <div className="log-row">
         <div className="date">{timestamp.toLocaleString()}:</div>
 

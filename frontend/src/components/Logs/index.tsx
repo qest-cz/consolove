@@ -34,7 +34,7 @@ const Logs = ({ filters, autoscroll }: LogsProps) => {
   }, [logs, autoscroll])
 
   return (
-    <div>
+    <div className="logs">
       {logs?.map(log => <Log key={log.id} log={log} />)}
       <div ref={messagesEndRef} />
     </div>
