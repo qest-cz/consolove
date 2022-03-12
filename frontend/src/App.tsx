@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
+import {FiltersType} from "./@types";
 import Filter from './components/Filter';
 import Logs from "./components/Logs";
-import {FiltersType} from "./@types";
+import registerStreamListener from './utils/eventStream';
 
 function App() {
   const [filters, setFilters] = React.useState<FiltersType>({
@@ -10,6 +11,10 @@ function App() {
     levels: [],
     projects: []
   })
+
+  React.useEffect(() => {
+    registerStreamListener()
+  }, [])
 
   return (
     <div className="app">
